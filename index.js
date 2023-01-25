@@ -14,13 +14,17 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //DB Connection
-mongoose.connect("mongodb://127.0.0.1:27017/timepaas");
+mongoose.connect("mongodb+srv://bhavisha:bhavisha123@cluster0.xpjqtow.mongodb.net/blog_16?retryWrites=true&w=majority");
 mongoose.connection.on("connected", () => {
   console.log("DB Connected");
 });
 
 app.use("/auth", authRouter);
 app.use("/blog", blogRouter);
+
+app.get("",(req,res)=>{
+  return res.sendFile(__dirname+"/imdex.html");
+})
 
 app.listen(4000, () => {
   console.log("server started on 4000");
